@@ -16,7 +16,10 @@ class ReturnDict(OrderedDict):
     """
 
     def __init__(self, *args, **kwargs):
-        self.serializer = kwargs.pop('serializer')
+        try:
+            self.serializer = kwargs.pop('serializer')
+        except KeyError:
+            pass
         super(ReturnDict, self).__init__(*args, **kwargs)
 
     def copy(self):
@@ -39,7 +42,10 @@ class ReturnList(list):
     """
 
     def __init__(self, *args, **kwargs):
-        self.serializer = kwargs.pop('serializer')
+        try:
+            self.serializer = kwargs.pop('serializer')
+        except KeyError:
+            pass
         super(ReturnList, self).__init__(*args, **kwargs)
 
     def __repr__(self):
